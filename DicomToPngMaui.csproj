@@ -65,10 +65,12 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.8.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Nowy folder1\" />
+	  <Folder Include="tmp\" />
 	</ItemGroup>
 
 	<ItemGroup>

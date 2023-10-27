@@ -49,7 +49,6 @@
             <Button
                 x:Name="CounterBtn"
                 Text="Log in"
-                SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center"
                 />
