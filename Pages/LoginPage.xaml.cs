@@ -1,5 +1,6 @@
 ﻿using System;
 using DicomToPngMaui.Data;
+using DicomToPngMaui.Pages;
 
 
 namespace DicomToPngMaui
@@ -7,11 +8,11 @@ namespace DicomToPngMaui
 
 
 {
-    public partial class MainPage : ContentPage
+    public partial class LoginPage : ContentPage
     {
         private User UserLogin;
 
-        public MainPage()
+        public LoginPage()
         {
             InitializeComponent();
             UserLogin = new User(); 
@@ -30,9 +31,11 @@ namespace DicomToPngMaui
             if (UserLogin.VerifyLogin(loginText, passwordText))
             {
                 await DisplayAlert("Login Info", "Logged in successfully", "OK");
+                await Navigation.PushAsync(new MainPage());
             }
             else
             {
+
                 await DisplayAlert("Login Info", "Incorrect login or password", "OK");
             }
 
