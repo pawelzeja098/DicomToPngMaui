@@ -49,7 +49,32 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Nowy folder2\**" />
+	  <AndroidResource Remove="Nowy folder\**" />
+	  <AndroidResource Remove="Properties\Nowy folder\**" />
+	  <Compile Remove="Nowy folder2\**" />
+	  <Compile Remove="Nowy folder\**" />
+	  <Compile Remove="Properties\Nowy folder\**" />
+	  <EmbeddedResource Remove="Nowy folder2\**" />
+	  <EmbeddedResource Remove="Nowy folder\**" />
+	  <EmbeddedResource Remove="Properties\Nowy folder\**" />
+	  <MauiCss Remove="Nowy folder2\**" />
+	  <MauiCss Remove="Nowy folder\**" />
+	  <MauiCss Remove="Properties\Nowy folder\**" />
+	  <MauiXaml Remove="Nowy folder2\**" />
+	  <MauiXaml Remove="Nowy folder\**" />
+	  <MauiXaml Remove="Properties\Nowy folder\**" />
+	  <None Remove="Nowy folder2\**" />
+	  <None Remove="Nowy folder\**" />
+	  <None Remove="Properties\Nowy folder\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Nowy folder1\" />
 	</ItemGroup>
 
 </Project>

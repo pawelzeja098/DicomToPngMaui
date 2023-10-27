@@ -1,24 +1,61 @@
-﻿namespace DicomToPngMaui
+﻿using System;
+using DicomToPngMaui.Data;
+
+
+namespace DicomToPngMaui
+
+
+
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+        private User UserLogin;
 
         public MainPage()
         {
             InitializeComponent();
+            UserLogin = new User(); 
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private async void OnCounterClicked(object sender, EventArgs e)
         {
-            count++;
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
+
+            string loginText = login.Text;
+            string passwordText = password.Text;
+
+
+
+
+            if (UserLogin.VerifyLogin(loginText, passwordText))
+            {
+                await DisplayAlert("Login Info", "Logged in successfully", "OK");
+            }
             else
-                CounterBtn.Text = $"Clicked {count} times";
+            {
+                await DisplayAlert("Login Info", "Incorrect login or password", "OK");
+            }
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            //void OnEntryTextChanged(object sender, TextChangedEventArgs e)
+            //{
+            //    string oldText = e.OldTextValue;
+            //    string newText = e.NewTextValue;
+            //    string myText = login.Text;
+            //}
+
+            //void OnEntryCompleted(object sender, EventArgs e)
+            //{
+            //    string text = ((Entry)sender).Text;
+            //}
+
+            //count++;
+
+            //if (count == 1)
+            //    CounterBtn.Text = $"Clicked {count} time";
+            //else
+            //    CounterBtn.Text = $"Clicked {count} times";
+
+            //SemanticScreenReader.Announce(CounterBtn.Text);
         }
     }
 }

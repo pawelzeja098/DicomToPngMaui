@@ -28,20 +28,22 @@
                 SemanticProperties.Description="Login"
                 FontSize="18"
                 HorizontalOptions="Center" />
+
+            <Entry x:Name="login"
+                Placeholder="Login"
+                />
+
+            <Entry x:Name="password"
+                Placeholder="Password"
+                />
             
-            <Editor 
-                x:Name= "login"
-                Placeholder = "Login"
-                VerticalOptions="Start"
-                HeightRequest = "30"
-                WidthRequest= "150"/>
-            
-            <Editor 
+
+            <!--<Editor 
                 x:Name= "password"
                 Placeholder = "Passoword"
                 VerticalOptions="Start"
                 HeightRequest = "30"
-                WidthRequest= "150"/> 
+                WidthRequest= "150"/>--> 
            
 
             <Button
@@ -51,6 +53,7 @@
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center"
                 />
+            
 
         </VerticalStackLayout>
     </ScrollView>
