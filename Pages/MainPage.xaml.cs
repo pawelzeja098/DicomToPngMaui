@@ -39,43 +39,91 @@ public partial class MainPage : ContentPage
         var stream = await result.OpenReadAsync();
 
         myImage.Source = ImageSource.FromStream(() => stream);
-        
-        
-        //async Task<FileResult> PickAndShow(PickOptions options)
-        //{
-        //    try
-        //    {
-             
-                
-        //        var result = await FilePicker.PickAsync(options);
-        //        if (result != null)
-        //        {
-        //            //Text = $"File Name: {result.FileName}";
-        //            if (result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
-        //                result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
-        //            {
-        //                var stream = await result.OpenReadAsync();
-        //                var Image = ImageSource.FromStream(() => stream);
 
+        string tmpFolderPath = GetTmpFolderPath();
 
-        //                byte[] fileBytes = new byte[stream.Length];
-        //                await stream.ReadAsync(fileBytes, 0, (int)stream.Length);
-        //                string fileName = result.FileName;
-        //                string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), fileName);
-        //                File.WriteAllBytes(filePath, fileBytes);
-        //            }
-        //        }
+        // Create a target file path in the tmp folder
+        string destinationFilePath = Path.Combine(tmpFolderPath, result.FileName);
 
-        //        return result;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message);
-        //        // The user canceled or something went wrong
-        //    }
-
-        //    return null;
+        // Save the stream to the file
+        using (FileStream fileStream = File.Create(destinationFilePath))
+        {
+            await stream.CopyToAsync(fileStream);
         }
+
+        myImage.Source = ImageSource.FromStream(() => stream);
+    }
+
+    [Obsolete]
+    private string GetTmpFolderPath()
+    {
+        string tmpFolderPath = "";
+
+        // Dostosuj œcie¿kê folderu tmp w zale¿noœci od platformy
+        switch (Device.RuntimePlatform)
+        {
+            case Device.iOS:
+                tmpFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "tmp");
+                break;
+
+            case Device.Android:
+                tmpFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "tmp");
+                break;
+
+            
+            case Device.WinUI:
+                tmpFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "tmp");
+                break;
+
+            default:
+                throw new NotSupportedException("Platform not supported");
+        }
+
+        // Create tmp if not exists
+        if (!Directory.Exists(tmpFolderPath))
+        {
+            Directory.CreateDirectory(tmpFolderPath);
+        }
+
+        return tmpFolderPath;
+    }
+}
+
+            //async Task<FileResult> PickAndShow(PickOptions options)
+            //{
+            //    try
+            //    {
+
+
+            //        var result = await FilePicker.PickAsync(options);
+            //        if (result != null)
+            //        {
+            //            //Text = $"File Name: {result.FileName}";
+            //            if (result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
+            //                result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
+            //            {
+            //                var stream = await result.OpenReadAsync();
+            //                var Image = ImageSource.FromStream(() => stream);
+
+
+            //                byte[] fileBytes = new byte[stream.Length];
+            //                await stream.ReadAsync(fileBytes, 0, (int)stream.Length);
+            //                string fileName = result.FileName;
+            //                string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), fileName);
+            //                File.WriteAllBytes(filePath, fileBytes);
+            //            }
+            //        }
+
+            //        return result;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Console.WriteLine(ex.Message);
+            //        // The user canceled or something went wrong
+            //    }
+
+            //    return null;
+        
 
    
     //    var options = new PickOptions
@@ -90,4 +138,3 @@ public partial class MainPage : ContentPage
     
 
 
-}
