@@ -1,10 +1,11 @@
 
 using Microsoft.Maui.Controls;
+using Microsoft.Maui.Storage;
 using System.Diagnostics;
 namespace DicomToPngMaui.Pages;
 
+using System.Net;
 
-using Xamarin.Essentials;
     
 
 public partial class MainPage : ContentPage
@@ -13,60 +14,77 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
     }
-    private async void OnCounterClicked(object sender, EventArgs e)
+    private async void OnFilePickerClicked(object sender, EventArgs e)
     {
-        async Task<FileResult> PickAndShow(PickOptions options)
+        var result = await FilePicker.PickAsync(new PickOptions
         {
-            try
-            {
-                var result = await FilePicker.PickAsync(options);
-                if (result != null)
-                {
-                    //Text = $"File Name: {result.FileName}";
-                    if (result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
-                        result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
-                    {
-                        var stream = await result.OpenReadAsync();
-                        var Image = ImageSource.FromStream(() => stream);
+            PickerTitle = "Please select a file",
+            FileTypes = FilePickerFileType.Images,
+        });
+        if (result == null)
+            return; // user canceled file picking
+  
+           
+        var stream = await result.OpenReadAsync();
+
+        myImage.Source = ImageSource.FromStream(() => stream);
+        
+        
+        //async Task<FileResult> PickAndShow(PickOptions options)
+        //{
+        //    try
+        //    {
+             
+                
+        //        var result = await FilePicker.PickAsync(options);
+        //        if (result != null)
+        //        {
+        //            //Text = $"File Name: {result.FileName}";
+        //            if (result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
+        //                result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
+        //            {
+        //                var stream = await result.OpenReadAsync();
+        //                var Image = ImageSource.FromStream(() => stream);
 
 
-                        byte[] fileBytes = new byte[stream.Length];
-                        await stream.ReadAsync(fileBytes, 0, (int)stream.Length);
-                        string fileName = result.FileName;
-                        string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), fileName);
-                        File.WriteAllBytes(filePath, fileBytes);
-                    }
-                }
+        //                byte[] fileBytes = new byte[stream.Length];
+        //                await stream.ReadAsync(fileBytes, 0, (int)stream.Length);
+        //                string fileName = result.FileName;
+        //                string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), fileName);
+        //                File.WriteAllBytes(filePath, fileBytes);
+        //            }
+        //        }
 
-                return result;
-            }
-            catch (Exception ex)
-            {
-                // The user canceled or something went wrong
-            }
+        //        return result;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //        // The user canceled or something went wrong
+        //    }
 
-            return null;
+        //    return null;
         }
 
-        var customFileType =
-    new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
-    {
-        { DevicePlatform.iOS, new[] { "public.my.comic.extension" } }, // or general UTType values
-        { DevicePlatform.Android, new[] { "application/comics" } },
-        { DevicePlatform.UWP, new[] { ".cbr", ".cbz" } },
-        { DevicePlatform.Tizen, new[] { "*/*" } },
-        { DevicePlatform.macOS, new[] { "cbr", "cbz" } }, // or general UTType values
-    });
-        var options = new PickOptions
-        {
-            PickerTitle = "Please select a comic file",
-            FileTypes = customFileType,
-        };
-        await PickAndShow(options);
-    }
+    //    var customFileType =
+    //new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+    //{
+    //    { DevicePlatform.iOS, new[] { "public.my.comic.extension" } }, // or general UTType values
+    //    { DevicePlatform.Android, new[] { "application/comics" } },
+    //    { DevicePlatform.UWP, new[] { ".cbr", ".cbz" } },
+    //    { DevicePlatform.Tizen, new[] { "*/*" } },
+    //    { DevicePlatform.macOS, new[] { "cbr", "cbz" } }, // or general UTType values
+    //});
+    //    var options = new PickOptions
+    //    {
+    //        PickerTitle = "Please select a comic file",
+    //        FileTypes = customFileType,
+    //    };
+    //    await PickAndShow(options);
+    //}
     
 
-
+    
 
 
 }

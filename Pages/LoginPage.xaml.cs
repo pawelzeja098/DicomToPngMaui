@@ -1,7 +1,7 @@
 ﻿using System;
 using DicomToPngMaui.Data;
 using DicomToPngMaui.Pages;
-
+using Xamarin.Essentials;
 
 namespace DicomToPngMaui
 

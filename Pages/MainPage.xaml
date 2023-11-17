@@ -11,14 +11,19 @@
             FontSize="20"/>
 
         <Button
-            x:Name="CounterBtn"
+            x:Name="FilePickerBtn"
             Text="UploadFile"
-            SemanticProperties.Hint="Counts the number of times you click"
-            Clicked="OnCounterClicked"
+            Clicked="OnFilePickerClicked"
             HorizontalOptions="Center"/>
-        
-            
-            
+
+        <Image
+            x:Name="myImage"
+            Source="upload_file_here.png"
+            HeightRequest="300"
+            WidthRequest="500"
+            HorizontalOptions="Center"/>
+
+
 
 
 
