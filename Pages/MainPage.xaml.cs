@@ -16,10 +16,21 @@ public partial class MainPage : ContentPage
     }
     private async void OnFilePickerClicked(object sender, EventArgs e)
     {
+        var customFileType =
+    new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+    {
+            { DevicePlatform.iOS, new[] { "public.my.comic.extension" } }, // or general UTType values
+            { DevicePlatform.Android, new[] { "application/png","application/jpg","application/dcm","application/DCM" } },
+            { DevicePlatform.WinUI, new[] { ".png", ".jpg",".dcm" ,".DCM"} },
+            { DevicePlatform.Tizen, new[] { "*/*" } },
+            { DevicePlatform.macOS, new[] { "png", "jpg" ,"dcm","DCM"} }, // or general UTType values
+    });
+
+
         var result = await FilePicker.PickAsync(new PickOptions
         {
             PickerTitle = "Please select a file",
-            FileTypes = FilePickerFileType.Images,
+            FileTypes = customFileType,
         });
         if (result == null)
             return; // user canceled file picking
@@ -66,15 +77,7 @@ public partial class MainPage : ContentPage
         //    return null;
         }
 
-    //    var customFileType =
-    //new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
-    //{
-    //    { DevicePlatform.iOS, new[] { "public.my.comic.extension" } }, // or general UTType values
-    //    { DevicePlatform.Android, new[] { "application/comics" } },
-    //    { DevicePlatform.UWP, new[] { ".cbr", ".cbz" } },
-    //    { DevicePlatform.Tizen, new[] { "*/*" } },
-    //    { DevicePlatform.macOS, new[] { "cbr", "cbz" } }, // or general UTType values
-    //});
+   
     //    var options = new PickOptions
     //    {
     //        PickerTitle = "Please select a comic file",
