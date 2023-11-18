@@ -26,7 +26,12 @@
             WidthRequest="500"
             HorizontalOptions="Center"/>
 
-
+        <Button
+            Margin="0,0,0,10"
+            x:Name="ClearFolderBtn"
+            Text="ClearFolder"
+            Clicked="OnClearFolderClicked"
+            HorizontalOptions="Center"/>
 
 
 

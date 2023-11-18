@@ -2,12 +2,14 @@
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Storage;
 using System.Diagnostics;
-namespace DicomToPngMaui.Pages;
 
 using System.Net;
+using FellowOakDicom;
+using FellowOakDicom.Imaging;
+using SkiaSharp;
 
-    
 
+namespace DicomToPngMaui.Pages;
 public partial class MainPage : ContentPage
 {
     public MainPage()
@@ -38,7 +40,7 @@ public partial class MainPage : ContentPage
            
         var stream = await result.OpenReadAsync();
 
-        myImage.Source = ImageSource.FromStream(() => stream);
+        //myImage.Source = ImageSource.FromStream(() => stream);
 
         string tmpFolderPath = GetTmpFolderPath();
 
@@ -49,9 +51,69 @@ public partial class MainPage : ContentPage
         using (FileStream fileStream = File.Create(destinationFilePath))
         {
             await stream.CopyToAsync(fileStream);
+            fileStream.Close();
         }
+        
+        MemoryStream copyStream = new MemoryStream();
+        stream.Seek(0, SeekOrigin.Begin);
+        await stream.CopyToAsync(copyStream);
 
-        myImage.Source = ImageSource.FromStream(() => stream);
+        
+
+        
+        
+        UnpackDicom(destinationFilePath);
+       
+    }
+
+    private void UnpackDicom(string fileStream)
+    {
+        // Source to the dicom file
+        string filePath = fileStream;
+
+        // Load dicom file
+        DicomFile dicomFile = DicomFile.Open(filePath);
+
+        // Unpack image data if exist
+        if (dicomFile.Dataset.Contains(DicomTag.PixelData))
+        {
+            DicomPixelData pixelData = DicomPixelData.Create(dicomFile.Dataset);
+
+            
+            int numberOfFrames = pixelData.NumberOfFrames;
+
+            
+            var path = FileSystem.Current.AppDataDirectory;
+
+            for (int frameIndex = 0; frameIndex < numberOfFrames; frameIndex++)
+            {
+                // Get pixel data for the frame
+                byte[] pixelBytes = pixelData.GetFrame(frameIndex).Data;
+
+                
+
+                using (var stream = new SKMemoryStream(pixelBytes))
+                using (var skBitmap = SKBitmap.Decode(stream))
+                {
+                    // Save file into PNG format.
+                    string outputImagePath = Path.Combine(path, $"frame_{frameIndex + 1}.png"); // frame_1.jpg, frame_2.jpg, ...
+
+                    using (var imageStream = File.OpenWrite(outputImagePath))
+                    {
+                        skBitmap.Encode(imageStream, SKEncodedImageFormat.Png, 100);
+                    }
+                }
+
+            }
+
+
+
+            Console.WriteLine("Dane obrazowe zosta³y wypakowane.");
+        }
+        else
+        {
+            Console.WriteLine("Brak danych obrazowych w pliku DICOM.");
+        }
     }
 
     [Obsolete]
@@ -87,54 +149,21 @@ public partial class MainPage : ContentPage
 
         return tmpFolderPath;
     }
+    private async void OnClearFolderClicked(object sender, EventArgs e)
+    {
+        string appDataDirectory = FileSystem.AppDataDirectory;
+
+        // Delete file from the app data directory
+        foreach (var filePath in Directory.GetFiles(appDataDirectory))
+        {
+            File.Delete(filePath);
+            Console.WriteLine($"Usuniêto plik: {filePath}");
+        }
+        await DisplayAlert("Alert", "Usuniêto pliki z lokalnego folderu", "OK");
+    }   
+   
 }
 
-            //async Task<FileResult> PickAndShow(PickOptions options)
-            //{
-            //    try
-            //    {
 
-
-            //        var result = await FilePicker.PickAsync(options);
-            //        if (result != null)
-            //        {
-            //            //Text = $"File Name: {result.FileName}";
-            //            if (result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
-            //                result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
-            //            {
-            //                var stream = await result.OpenReadAsync();
-            //                var Image = ImageSource.FromStream(() => stream);
-
-
-            //                byte[] fileBytes = new byte[stream.Length];
-            //                await stream.ReadAsync(fileBytes, 0, (int)stream.Length);
-            //                string fileName = result.FileName;
-            //                string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), fileName);
-            //                File.WriteAllBytes(filePath, fileBytes);
-            //            }
-            //        }
-
-            //        return result;
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Console.WriteLine(ex.Message);
-            //        // The user canceled or something went wrong
-            //    }
-
-            //    return null;
-        
-
-   
-    //    var options = new PickOptions
-    //    {
-    //        PickerTitle = "Please select a comic file",
-    //        FileTypes = customFileType,
-    //    };
-    //    await PickAndShow(options);
-    //}
-    
-
-    
 
 
