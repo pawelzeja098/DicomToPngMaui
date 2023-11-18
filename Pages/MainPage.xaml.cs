@@ -66,7 +66,7 @@ public partial class MainPage : ContentPage
        
     }
 
-    private void UnpackDicom(string fileStream)
+    private async void UnpackDicom(string fileStream)
     {
         // Source to the dicom file
         string filePath = fileStream;
@@ -107,12 +107,13 @@ public partial class MainPage : ContentPage
             }
 
 
-
-            Console.WriteLine("Dane obrazowe zosta³y wypakowane.");
+            await DisplayAlert("Alert", "Deleted files from LocalData.", "OK");
+            Console.WriteLine("Deleted files from LocalData.");
         }
         else
         {
-            Console.WriteLine("Brak danych obrazowych w pliku DICOM.");
+            await DisplayAlert("Alert", "There is no image data in the DICOM file.", "OK");
+            Console.WriteLine("There is no image data in the DICOM file.");
         }
     }
 
@@ -121,7 +122,7 @@ public partial class MainPage : ContentPage
     {
         string tmpFolderPath = "";
 
-        // Dostosuj œcie¿kê folderu tmp w zale¿noœci od platformy
+        // Adjust the tmp folder path depending on your platform
         switch (Device.RuntimePlatform)
         {
             case Device.iOS:

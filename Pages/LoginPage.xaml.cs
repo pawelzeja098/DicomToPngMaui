@@ -1,7 +1,7 @@
 ﻿using System;
 using DicomToPngMaui.Data;
 using DicomToPngMaui.Pages;
-using Xamarin.Essentials;
+
 
 namespace DicomToPngMaui
 
@@ -39,26 +39,7 @@ namespace DicomToPngMaui
                 await DisplayAlert("Login Info", "Incorrect login or password", "OK");
             }
 
-            //void OnEntryTextChanged(object sender, TextChangedEventArgs e)
-            //{
-            //    string oldText = e.OldTextValue;
-            //    string newText = e.NewTextValue;
-            //    string myText = login.Text;
-            //}
-
-            //void OnEntryCompleted(object sender, EventArgs e)
-            //{
-            //    string text = ((Entry)sender).Text;
-            //}
-
-            //count++;
-
-            //if (count == 1)
-            //    CounterBtn.Text = $"Clicked {count} time";
-            //else
-            //    CounterBtn.Text = $"Clicked {count} times";
-
-            //SemanticScreenReader.Announce(CounterBtn.Text);
+            
         }
     }
 }

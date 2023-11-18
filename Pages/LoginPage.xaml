@@ -10,12 +10,7 @@
             VerticalOptions="Center"
             HorizontalOptions="FillAndExpand">
 
-            <!--<Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />-->
-
+           
             <Label
                 Text="Dicom to Png converter app"
                 SemanticProperties.HeadingLevel="Level1"
@@ -38,13 +33,7 @@
                 />
             
 
-            <!--<Editor 
-                x:Name= "password"
-                Placeholder = "Passoword"
-                VerticalOptions="Start"
-                HeightRequest = "30"
-                WidthRequest= "150"/>--> 
-           
+         
 
             <Button
                 x:Name="CounterBtn"

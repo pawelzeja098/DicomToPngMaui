@@ -35,13 +35,7 @@
 
 
 
-        <!--<Image BackgroundColor="Silver"
-               HeightRequest="300"
-               WidthRequest="250">
-            <Image.GestureRecognizers>
-                <DropGestureRecognizer  DragOver="OnDragOver" Drop="OnDrop"/>
-            </Image.GestureRecognizers>
-        </Image>-->
+        
         
         
     </VerticalStackLayout>
