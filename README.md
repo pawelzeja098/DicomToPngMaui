@@ -3,8 +3,17 @@
 
 Extract images from dicom container.
 
+## Done:
+- login page (login: admin, password: admin)
+- implemented uploading files
+- unpacking dicom file
+- save images from dicom as png
+
 ## TO DO:
 
--add and customize main page  
--implement uploading files  
--unpack dicom file and extract images  
+- fix problem with adroid app
+- customize application to be prettier 
+
+## Using:
+- fo-dicom to unpack dicom file
+- SkiaSharp to save png images
