@@ -8,17 +8,30 @@
             Text="Upload your file"
             VerticalOptions="Center" 
             HorizontalOptions="Center"
-            FontSize="20"/>
+            FontSize="20"
+            Margin="0,0,0,10"/>
+        
+        <Button
+            Margin="0,0,0,10"
+            x:Name="FilePickerBtn"
+            Text="UploadFile"
+            Clicked="OnFilePickerClicked"
+            HorizontalOptions="Center"/>
+
+        <Image
+            Margin="0,0,0,10"
+            x:Name="myImage"
+            Source="upload_file_here.png"
+            HeightRequest="300"
+            WidthRequest="500"
+            HorizontalOptions="Center"/>
 
         <Button
-            x:Name="CounterBtn"
-            Text="UploadFile"
-            SemanticProperties.Hint="Counts the number of times you click"
-            Clicked="OnCounterClicked"
+            Margin="0,0,0,10"
+            x:Name="ClearFolderBtn"
+            Text="ClearFolder"
+            Clicked="OnClearFolderClicked"
             HorizontalOptions="Center"/>
-        
-            
-            
 
 
 

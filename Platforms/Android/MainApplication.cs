@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Runtime;
+using Xamarin.Essentials;
 
 namespace DicomToPngMaui
 {
@@ -9,8 +10,10 @@ namespace DicomToPngMaui
         public MainApplication(IntPtr handle, JniHandleOwnership ownership)
             : base(handle, ownership)
         {
+
         }
 
         protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
     }
+
 }
