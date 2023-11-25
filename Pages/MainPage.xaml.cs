@@ -16,6 +16,8 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
     }
+
+    [Obsolete]
     private async void OnFilePickerClicked(object sender, EventArgs e)
     {
         var customFileType =
@@ -107,8 +109,8 @@ public partial class MainPage : ContentPage
             }
 
 
-            await DisplayAlert("Alert", "Deleted files from LocalData.", "OK");
-            Console.WriteLine("Deleted files from LocalData.");
+            await DisplayAlert("Alert", "Finished unpacking dicom", "OK");
+            Console.WriteLine("Finished unpacking dicom");
         }
         else
         {
@@ -160,7 +162,7 @@ public partial class MainPage : ContentPage
             File.Delete(filePath);
             Console.WriteLine($"Usuniêto plik: {filePath}");
         }
-        await DisplayAlert("Alert", "Usuniêto pliki z lokalnego folderu", "OK");
+        await DisplayAlert("Alert", "Files have been deleted from LocalData", "OK");
     }   
    
 }

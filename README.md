@@ -10,12 +10,17 @@ Extract images from dicom container.
 - save images from dicom as png
 
 ## TO DO:
-- fix problem with adroid app
-- customize application to be prettier 
+- menage files on android system  
+- customize application to be prettier  
+
+## Solved problems:
+-Building MAUI Android Failing https://stackoverflow.com/questions/72454213/building-maui-android-failing  
+
 
 ## Using:
 - fo-dicom to unpack dicom file
 - SkiaSharp to save png images
+
 
 
 

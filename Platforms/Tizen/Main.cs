@@ -1,7 +1,7 @@
 using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 using System;
-using Xamarin.Essentials;
+
 
 namespace DicomToPngMaui
 {
