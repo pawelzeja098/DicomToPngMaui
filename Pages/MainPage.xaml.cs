@@ -30,6 +30,32 @@ public partial class MainPage : ContentPage
             { DevicePlatform.macOS, new[] { "png", "jpg" ,"dcm","DCM"} }, // or general UTType values
     });
 
+        if (Device.RuntimePlatform == Device.Android)
+        {
+            try
+            {
+                var url = YourUrlEntry.Text;
+
+                using (var httpClient = new HttpClient())
+                {
+                    // Get data from URL
+                    var data = await httpClient.GetByteArrayAsync(url);
+
+
+                    var fileName = "DownloadedFile";
+                    var filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), fileName);
+                    File.WriteAllBytes(filePath, data);
+
+                    await DisplayAlert("Sukces", $"File downloaded and saved in: {fileName}", "OK");
+
+                    UnpackDicom(filePath);
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("B³¹d", $"Wyst¹pi³ b³¹d: {ex.Message}", "OK");
+            }
+        }
 
         var result = await FilePicker.PickAsync(new PickOptions
         {
