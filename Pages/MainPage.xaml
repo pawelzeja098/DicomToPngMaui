@@ -37,7 +37,32 @@
             HeightRequest="300"
             WidthRequest="500"
             HorizontalOptions="Center"/>
+        <Button
+            Margin="0,0,0,10"
+            x:Name="OpenImagesBtn"
+            Text="OpenImages"
+            Clicked="OnOpenImagesClicked"
+            HorizontalOptions="Center"/>
 
+
+
+
+
+
+        <CarouselView x:Name="imageCarousel"
+              HorizontalOptions="FillAndExpand"
+              VerticalOptions="FillAndExpand">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Image Source="{Binding}" Aspect="AspectFit" />
+                        <!-- Dodaj podgląd obrazu, np. etykietę z nazwą pliku -->
+                        <Label Text="{Binding}" HorizontalTextAlignment="Center" />
+                        
+                    </StackLayout>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
         <Button
             Margin="0,0,0,10"
             x:Name="ClearFolderBtn"
@@ -50,9 +75,8 @@
             <StackLayout x:Name="imageStackLayout">
                 <!-- Images will be added here dynamically -->
             </StackLayout>
-
         </StackLayout>
-
 
     </VerticalStackLayout>
 </ContentPage>
+

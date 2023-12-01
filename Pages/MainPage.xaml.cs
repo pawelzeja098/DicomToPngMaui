@@ -17,9 +17,9 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
 
-        LoadImages();
+        //LoadImages();
     }
-
+    private DateTime lastUnpackTime = DateTime.MinValue;
     [Obsolete]
     private async void OnFilePickerClicked(object sender, EventArgs e)
     
@@ -33,6 +33,7 @@ public partial class MainPage : ContentPage
             { DevicePlatform.Tizen, new[] { "*/*" } },
             { DevicePlatform.macOS, new[] { "png", "jpg" ,"dcm","DCM"} }, // or general UTType values
     });
+
 
         downloadProgressBar.IsVisible = true;
         var url = YourUrlEntry.Text;
@@ -149,7 +150,7 @@ public partial class MainPage : ContentPage
             await DisplayAlert("Alert", "Finished unpacking dicom", "OK");
             Console.WriteLine("Finished unpacking dicom");
             downloadProgressBar.Progress = 1;
-            LoadImages();
+            //LoadImages();
         }
         else
         {
@@ -158,30 +159,83 @@ public partial class MainPage : ContentPage
         }
     }
 
-    private void LoadImages()
+    //private void LoadImages()
+    //{
+    //    var path = FileSystem.Current.AppDataDirectory;
+
+    //    // Usuñ wczeœniej wyœwietlone obrazy
+    //    //imageStackLayout.Children.Clear();
+
+    //    // Get a list of PNG files created after the last call to UnpackDicom
+    //    var pngFiles = Directory.GetFiles(path, "frame_*.png")
+    //                            .Where(file => File.GetLastWriteTime(file) > lastUnpackTime)
+    //                            .ToList();
+
+    //    foreach (var pngFile in pngFiles)
+    //    {
+    //        var image = new Image
+    //        {
+    //            Source = ImageSource.FromFile(pngFile),
+    //            WidthRequest = 300, // Dostosuj szerokoœæ wed³ug potrzeb
+    //            HeightRequest = 300 // Dostosuj wysokoœæ wed³ug potrzeb
+    //        };
+    //        // Dodaj œcie¿ki do plików do ObservableCollection, aby zaktualizowaæ CarouselView
+    //        //imageStackLayout.Children.Add(image);
+    //    }
+    //}
+    private void OnOpenImagesClicked(object sender, EventArgs e)
     {
+        
         var path = FileSystem.Current.AppDataDirectory;
 
+        // Usuñ wczeœniej wyœwietlone obrazy
         imageStackLayout.Children.Clear();
 
-        // Get a list of PNG files in the specified directory
-        var pngFiles = Directory.GetFiles(path, "frame_*.png");
+        // Get a list of PNG files created after the last call to UnpackDicom
+        var pngFiles = Directory.GetFiles(path, "frame_*.png")
+                                .Where(file => File.GetLastWriteTime(file) > lastUnpackTime)
+                                .ToList();
+        
+        imageCarousel.ItemsSource = pngFiles;
 
         foreach (var pngFile in pngFiles)
-        {
-            // Create Image and set its source to the loaded PNG file
+            {
             var image = new Image
             {
                 Source = ImageSource.FromFile(pngFile),
-                WidthRequest = 300, // Adjust width if needed
-                HeightRequest = 300 // Adjust height if needed
+                WidthRequest = 300, // Dostosuj szerokoœæ wed³ug potrzeb
+                HeightRequest = 300 // Dostosuj wysokoœæ wed³ug potrzeb
             };
-
-            // Add the Image to the StackLayout
+            // Dodaj œcie¿ki do plików do ObservableCollection, aby zaktualizowaæ CarouselView
             imageStackLayout.Children.Add(image);
+
+            
+        }
+       
+        // Wyœwietl CarouselView w pe³noekranowym oknie
+        Navigation.PushModalAsync(new NavigationPage(new ContentPage
+        {
+            Content = imageCarousel
+        }));
+    }
+    private int currentIndex = 0;
+    private void OnPreviousClicked(object sender, EventArgs e)
+    {
+        if (currentIndex > 0)
+        {
+            currentIndex--;
+            imageCarousel.Position = currentIndex;
         }
     }
 
+    private void OnNextClicked(object sender, EventArgs e)
+    {
+        if (currentIndex < 100)
+        {
+            currentIndex++;
+            imageCarousel.Position = currentIndex;
+        }
+    }
     [Obsolete]
     private string GetTmpFolderPath()
     {
