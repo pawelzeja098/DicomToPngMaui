@@ -24,6 +24,12 @@
             Placeholder="File Name"
             HorizontalOptions="Center"/>
 
+        <ProgressBar x:Name="downloadProgressBar"
+                     Progress="0"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="CenterAndExpand" 
+                     IsVisible="false"/>
+
         <Image
             Margin="0,0,0,10"
             x:Name="myImage"
@@ -39,10 +45,14 @@
             Clicked="OnClearFolderClicked"
             HorizontalOptions="Center"/>
 
+        <StackLayout>
+            <!-- Placeholder for displaying images -->
+            <StackLayout x:Name="imageStackLayout">
+                <!-- Images will be added here dynamically -->
+            </StackLayout>
+
+        </StackLayout>
 
 
-        
-        
-        
     </VerticalStackLayout>
 </ContentPage>
