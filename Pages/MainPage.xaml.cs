@@ -76,7 +76,8 @@ public partial class MainPage : ContentPage
             if (result == null)
                 return; // user canceled file picking
 
-
+            downloadProgressBar.Progress = 0.1;
+            
             var stream = await result.OpenReadAsync();
 
             //myImage.Source = ImageSource.FromStream(() => stream);
@@ -97,7 +98,7 @@ public partial class MainPage : ContentPage
             stream.Seek(0, SeekOrigin.Begin);
             await stream.CopyToAsync(copyStream);
 
-
+            downloadProgressBar.Progress = 0.5;
 
 
 
@@ -185,57 +186,60 @@ public partial class MainPage : ContentPage
     //}
     private void OnOpenImagesClicked(object sender, EventArgs e)
     {
+        Navigation.PushAsync(new ViewImages());
+
+    }
         
-        var path = FileSystem.Current.AppDataDirectory;
+    //    var path = FileSystem.Current.AppDataDirectory;
 
-        // Usuñ wczeœniej wyœwietlone obrazy
-        imageStackLayout.Children.Clear();
+    //    // Usuñ wczeœniej wyœwietlone obrazy
+    //    imageStackLayout.Children.Clear();
 
-        // Get a list of PNG files created after the last call to UnpackDicom
-        var pngFiles = Directory.GetFiles(path, "frame_*.png")
-                                .Where(file => File.GetLastWriteTime(file) > lastUnpackTime)
-                                .ToList();
+    //    // Get a list of PNG files created after the last call to UnpackDicom
+    //    var pngFiles = Directory.GetFiles(path, "frame_*.png")
+    //                            .Where(file => File.GetLastWriteTime(file) > lastUnpackTime)
+    //                            .ToList();
         
-        imageCarousel.ItemsSource = pngFiles;
+    //    imageCarousel.ItemsSource = pngFiles;
 
-        foreach (var pngFile in pngFiles)
-            {
-            var image = new Image
-            {
-                Source = ImageSource.FromFile(pngFile),
-                WidthRequest = 300, // Dostosuj szerokoœæ wed³ug potrzeb
-                HeightRequest = 300 // Dostosuj wysokoœæ wed³ug potrzeb
-            };
-            // Dodaj œcie¿ki do plików do ObservableCollection, aby zaktualizowaæ CarouselView
-            imageStackLayout.Children.Add(image);
+    //    foreach (var pngFile in pngFiles)
+    //        {
+    //        var image = new Image
+    //        {
+    //            Source = ImageSource.FromFile(pngFile),
+    //            WidthRequest = 300, // Dostosuj szerokoœæ wed³ug potrzeb
+    //            HeightRequest = 300 // Dostosuj wysokoœæ wed³ug potrzeb
+    //        };
+    //        // Dodaj œcie¿ki do plików do ObservableCollection, aby zaktualizowaæ CarouselView
+    //        imageStackLayout.Children.Add(image);
 
             
-        }
+    //    }
        
-        // Wyœwietl CarouselView w pe³noekranowym oknie
-        Navigation.PushModalAsync(new NavigationPage(new ContentPage
-        {
-            Content = imageCarousel
-        }));
-    }
-    private int currentIndex = 0;
-    private void OnPreviousClicked(object sender, EventArgs e)
-    {
-        if (currentIndex > 0)
-        {
-            currentIndex--;
-            imageCarousel.Position = currentIndex;
-        }
-    }
+    //    // Wyœwietl CarouselView w pe³noekranowym oknie
+    //    Navigation.PushModalAsync(new NavigationPage(new ContentPage
+    //    {
+    //        Content = imageCarousel
+    //    }));
+    //}
+    //private int currentIndex = 0;
+    //private void OnPreviousClicked(object sender, EventArgs e)
+    //{
+    //    if (currentIndex > 0)
+    //    {
+    //        currentIndex--;
+    //        imageCarousel.Position = currentIndex;
+    //    }
+    //}
 
-    private void OnNextClicked(object sender, EventArgs e)
-    {
-        if (currentIndex < 100)
-        {
-            currentIndex++;
-            imageCarousel.Position = currentIndex;
-        }
-    }
+    //private void OnNextClicked(object sender, EventArgs e)
+    //{
+    //    if (currentIndex < 100)
+    //    {
+    //        currentIndex++;
+    //        imageCarousel.Position = currentIndex;
+    //    }
+    //}
     [Obsolete]
     private string GetTmpFolderPath()
     {

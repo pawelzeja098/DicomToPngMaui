@@ -49,14 +49,14 @@
 
 
 
-        <CarouselView x:Name="imageCarousel"
+        <!--<CarouselView x:Name="imageCarousel"
               HorizontalOptions="FillAndExpand"
               VerticalOptions="FillAndExpand">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>
                         <Image Source="{Binding}" Aspect="AspectFit" />
-                        <!-- Dodaj podgląd obrazu, np. etykietę z nazwą pliku -->
+                        --><!-- Dodaj podgląd obrazu, np. etykietę z nazwą pliku --><!--
                         <Label Text="{Binding}" HorizontalTextAlignment="Center" />
                         
                     </StackLayout>
@@ -71,11 +71,11 @@
             HorizontalOptions="Center"/>
 
         <StackLayout>
-            <!-- Placeholder for displaying images -->
+            --><!-- Placeholder for displaying images --><!--
             <StackLayout x:Name="imageStackLayout">
-                <!-- Images will be added here dynamically -->
+                --><!-- Images will be added here dynamically --><!--
             </StackLayout>
-        </StackLayout>
+        </StackLayout>-->
 
     </VerticalStackLayout>
 </ContentPage>

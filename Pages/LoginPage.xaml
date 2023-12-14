@@ -30,6 +30,7 @@
 
             <Entry x:Name="password"
                 Placeholder="Password"
+                IsPassword="True"
                 />
             
 
