@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DicomToPngMaui.Pages.ViewImages"
+             Title="ViewImages">
+    <VerticalStackLayout>
+
+        <CarouselView x:Name="imageCarousel" IndicatorView="indicatorview">
+            <CarouselView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>https://picsum.photos/200/300?image=1</x:String>
+                    <x:String>https://picsum.photos/200/300?image=2</x:String>
+                    <x:String>https://picsum.photos/200/300?image=3</x:String>
+                    <x:String>https://picsum.photos/200/300?image=4</x:String>
+                    <x:String>https://picsum.photos/200/300?image=5</x:String>
+                    <x:String>https://picsum.photos/200/300?image=6</x:String>
+                    <x:String>https://picsum.photos/200/300?image=7</x:String>
+                    <x:String>https://picsum.photos/200/300?image=8</x:String>
+                    <x:String>https://picsum.photos/200/300?image=9</x:String>
+                    <x:String>https://picsum.photos/200/300?image=10</x:String>
+                </x:Array>
+            </CarouselView.ItemsSource>
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout BackgroundColor="White" Padding="10">
+                        <Label FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="{Binding}" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        <IndicatorView
+            x:Name = "indicatorview"
+            IndicatorColor="Red"
+            SelectedIndicatorColor="Blue"
+            IndicatorSize="20"
+            VerticalOptions="End"
+            HorizontalOptions="Center">
+            <!--<IndicatorView.Indicators>
+                <OnPlatform x:TypeArguments="View">
+                    <On Platform="iOS">
+                        <BoxView
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            CornerRadius="10"
+                            BackgroundColor="Red" />
+                    </On>
+                    <On Platform="Android">
+                        <BoxView
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            CornerRadius="10"
+                            BackgroundColor="Blue" />
+                    </On>
+                    <On Platform="UWP">
+                        <BoxView
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            CornerRadius="10"
+                            BackgroundColor="Green" />
+                    </On>
+                </OnPlatform>
+            </IndicatorView.Indicators>-->
+        </IndicatorView>
+
+        <StackLayout>
+            <!-- Placeholder for displaying images -->
+            <StackLayout x:Name="imageStackLayout">
+                <!-- Images will be added here dynamically -->
+            </StackLayout>
+        </StackLayout>
+        
+    </VerticalStackLayout>
+    
+</ContentPage>
