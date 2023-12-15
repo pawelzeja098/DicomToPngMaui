@@ -8,10 +8,11 @@ Extract images from dicom container.
 - implemented uploading files
 - unpacking dicom file
 - save images from dicom as png
+- get files from urls
+- carousel view of pngs
 
-## TO DO:
-- menage files on android system  
-- customize application to be prettier  
+## TO DO: 
+- customize application  
 
 ## Solved problems:
 -Building MAUI Android Failing https://stackoverflow.com/questions/72454213/building-maui-android-failing  
