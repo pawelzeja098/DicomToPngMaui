@@ -160,86 +160,14 @@ public partial class MainPage : ContentPage
         }
     }
 
-    //private void LoadImages()
-    //{
-    //    var path = FileSystem.Current.AppDataDirectory;
-
-    //    // Usuñ wczeœniej wyœwietlone obrazy
-    //    //imageStackLayout.Children.Clear();
-
-    //    // Get a list of PNG files created after the last call to UnpackDicom
-    //    var pngFiles = Directory.GetFiles(path, "frame_*.png")
-    //                            .Where(file => File.GetLastWriteTime(file) > lastUnpackTime)
-    //                            .ToList();
-
-    //    foreach (var pngFile in pngFiles)
-    //    {
-    //        var image = new Image
-    //        {
-    //            Source = ImageSource.FromFile(pngFile),
-    //            WidthRequest = 300, // Dostosuj szerokoœæ wed³ug potrzeb
-    //            HeightRequest = 300 // Dostosuj wysokoœæ wed³ug potrzeb
-    //        };
-    //        // Dodaj œcie¿ki do plików do ObservableCollection, aby zaktualizowaæ CarouselView
-    //        //imageStackLayout.Children.Add(image);
-    //    }
-    //}
+   
     private void OnOpenImagesClicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new ViewImages());
 
     }
         
-    //    var path = FileSystem.Current.AppDataDirectory;
-
-    //    // Usuñ wczeœniej wyœwietlone obrazy
-    //    imageStackLayout.Children.Clear();
-
-    //    // Get a list of PNG files created after the last call to UnpackDicom
-    //    var pngFiles = Directory.GetFiles(path, "frame_*.png")
-    //                            .Where(file => File.GetLastWriteTime(file) > lastUnpackTime)
-    //                            .ToList();
-        
-    //    imageCarousel.ItemsSource = pngFiles;
-
-    //    foreach (var pngFile in pngFiles)
-    //        {
-    //        var image = new Image
-    //        {
-    //            Source = ImageSource.FromFile(pngFile),
-    //            WidthRequest = 300, // Dostosuj szerokoœæ wed³ug potrzeb
-    //            HeightRequest = 300 // Dostosuj wysokoœæ wed³ug potrzeb
-    //        };
-    //        // Dodaj œcie¿ki do plików do ObservableCollection, aby zaktualizowaæ CarouselView
-    //        imageStackLayout.Children.Add(image);
-
-            
-    //    }
-       
-    //    // Wyœwietl CarouselView w pe³noekranowym oknie
-    //    Navigation.PushModalAsync(new NavigationPage(new ContentPage
-    //    {
-    //        Content = imageCarousel
-    //    }));
-    //}
-    //private int currentIndex = 0;
-    //private void OnPreviousClicked(object sender, EventArgs e)
-    //{
-    //    if (currentIndex > 0)
-    //    {
-    //        currentIndex--;
-    //        imageCarousel.Position = currentIndex;
-    //    }
-    //}
-
-    //private void OnNextClicked(object sender, EventArgs e)
-    //{
-    //    if (currentIndex < 100)
-    //    {
-    //        currentIndex++;
-    //        imageCarousel.Position = currentIndex;
-    //    }
-    //}
+    
     [Obsolete]
     private string GetTmpFolderPath()
     {

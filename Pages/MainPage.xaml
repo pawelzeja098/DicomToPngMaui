@@ -10,25 +10,38 @@
             HorizontalOptions="Center"
             FontSize="20"
             Margin="0,0,0,10"/>
-        
+        <Label 
+            Text="From Device:"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontSize="10"
+            Margin="0,0,0,10"/>
         <Button
             Margin="0,0,0,10"
             x:Name="FilePickerBtn"
             Text="UploadFile"
             Clicked="OnFilePickerClicked"
             HorizontalOptions="Center"/>
-
+        <Label 
+            Text="From url:"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontSize="10"
+            Margin="0,0,0,10"/>
         <Entry
             Margin="0,0,0,10"
+            WidthRequest="500"
             x:Name="YourUrlEntry"
             Placeholder="File Name"
+            
             HorizontalOptions="Center"/>
 
-        <ProgressBar x:Name="downloadProgressBar"
-                     Progress="0"
-                     HorizontalOptions="FillAndExpand"
-                     VerticalOptions="CenterAndExpand" 
-                     IsVisible="false"/>
+        <ProgressBar 
+            x:Name="downloadProgressBar"
+            Progress="0"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="CenterAndExpand" 
+            IsVisible="false"/>
 
         <Image
             Margin="0,0,0,10"
@@ -49,33 +62,7 @@
 
 
 
-        <!--<CarouselView x:Name="imageCarousel"
-              HorizontalOptions="FillAndExpand"
-              VerticalOptions="FillAndExpand">
-            <CarouselView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout>
-                        <Image Source="{Binding}" Aspect="AspectFit" />
-                        --><!-- Dodaj podgląd obrazu, np. etykietę z nazwą pliku --><!--
-                        <Label Text="{Binding}" HorizontalTextAlignment="Center" />
-                        
-                    </StackLayout>
-                </DataTemplate>
-            </CarouselView.ItemTemplate>
-        </CarouselView>
-        <Button
-            Margin="0,0,0,10"
-            x:Name="ClearFolderBtn"
-            Text="ClearFolder"
-            Clicked="OnClearFolderClicked"
-            HorizontalOptions="Center"/>
-
-        <StackLayout>
-            --><!-- Placeholder for displaying images --><!--
-            <StackLayout x:Name="imageStackLayout">
-                --><!-- Images will be added here dynamically --><!--
-            </StackLayout>
-        </StackLayout>-->
+     
 
     </VerticalStackLayout>
 </ContentPage>
