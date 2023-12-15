@@ -10,13 +10,38 @@
             HorizontalOptions="Center"
             FontSize="20"
             Margin="0,0,0,10"/>
-        
+        <Label 
+            Text="From Device:"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontSize="10"
+            Margin="0,0,0,10"/>
         <Button
             Margin="0,0,0,10"
             x:Name="FilePickerBtn"
             Text="UploadFile"
             Clicked="OnFilePickerClicked"
             HorizontalOptions="Center"/>
+        <Label 
+            Text="From url:"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontSize="10"
+            Margin="0,0,0,10"/>
+        <Entry
+            Margin="0,0,0,10"
+            WidthRequest="500"
+            x:Name="YourUrlEntry"
+            Placeholder="File Name"
+            
+            HorizontalOptions="Center"/>
+
+        <ProgressBar 
+            x:Name="downloadProgressBar"
+            Progress="0"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="CenterAndExpand" 
+            IsVisible="false"/>
 
         <Image
             Margin="0,0,0,10"
@@ -25,18 +50,20 @@
             HeightRequest="300"
             WidthRequest="500"
             HorizontalOptions="Center"/>
-
         <Button
             Margin="0,0,0,10"
-            x:Name="ClearFolderBtn"
-            Text="ClearFolder"
-            Clicked="OnClearFolderClicked"
+            x:Name="OpenImagesBtn"
+            Text="OpenImages"
+            Clicked="OnOpenImagesClicked"
             HorizontalOptions="Center"/>
 
 
 
-        
-        
-        
+
+
+
+     
+
     </VerticalStackLayout>
 </ContentPage>
+
