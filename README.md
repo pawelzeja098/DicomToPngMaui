@@ -1,7 +1,8 @@
 # Dicom To Png Maui App
 ## Description
 
-Extract images from dicom container.
+Extract images from dicom container. Dicom files can be get from device or URL. Dicom container is exctracted to PNGs and then they can be shown in carousel view.
+App works on android and windows, it was not tested on apple products.
 
 ## Done:
 - login page (login: admin, password: admin)
