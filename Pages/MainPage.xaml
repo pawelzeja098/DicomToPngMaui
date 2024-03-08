@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DicomToPngMaui.Pages.MainPage"
              Title="Dicom To Png">
-    <VerticalStackLayout>
+    <ScrollView>
+    <StackLayout>
         <Label 
             Text="Upload your file"
             VerticalOptions="Center" 
@@ -28,13 +29,13 @@
             HorizontalOptions="Center"
             FontSize="10"
             Margin="0,0,0,10"/>
-        <Entry
+            <Entry
             Margin="0,0,0,10"
-            WidthRequest="500"
+            
             x:Name="YourUrlEntry"
             Placeholder="File Name"
+            HorizontalOptions="FillAndExpand"/>
             
-            HorizontalOptions="Center"/>
 
         <ProgressBar 
             x:Name="downloadProgressBar"
@@ -47,8 +48,7 @@
             Margin="0,0,0,10"
             x:Name="myImage"
             Source="upload_file_here.png"
-            HeightRequest="300"
-            WidthRequest="500"
+            Aspect="AspectFit"
             HorizontalOptions="Center"/>
         <Button
             Margin="0,0,0,10"
@@ -58,12 +58,13 @@
             HorizontalOptions="Center"/>
 
 
-
+    
 
 
 
      
 
-    </VerticalStackLayout>
+    </StackLayout>
+    </ScrollView>
 </ContentPage>
 
