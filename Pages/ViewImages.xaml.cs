@@ -1,16 +1,17 @@
 namespace DicomToPngMaui.Pages;
 
+//Carousell view
 public partial class ViewImages : ContentPage
 {
-	public ViewImages()
-	{
-		InitializeComponent();
+    public ViewImages()
+    {
+        InitializeComponent();
 
-       DateTime lastUnpackTime = DateTime.MinValue;
+        DateTime lastUnpackTime = DateTime.MinValue;
 
-       var path = FileSystem.Current.AppDataDirectory;
+        var path = FileSystem.Current.AppDataDirectory;
 
-        
+
 
         // Get a list of PNG files created after the last call to UnpackDicom
         var pngFiles = Directory.GetFiles(path, "frame_*.png")
@@ -23,7 +24,7 @@ public partial class ViewImages : ContentPage
         // Sort the files by frame number
         var sortedPngFiles = pngFiles.OrderBy(file =>
         {
-            
+
             var fileName = Path.GetFileNameWithoutExtension(file);
             var frameNumberString = fileName.Replace("frame_", "");
             if (int.TryParse(frameNumberString, out int frameNumber))
@@ -41,9 +42,16 @@ public partial class ViewImages : ContentPage
             imageItems.Add(imageItem);
 
 
-            
-           
+
+
         }
         imageCarousel.ItemsSource = imageItems;
     }
 }
+
+
+
+
+
+
+

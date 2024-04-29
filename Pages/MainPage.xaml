@@ -58,13 +58,19 @@
             HorizontalOptions="Center"/>
 
 
-    
+            <Button
+            Margin="0,0,0,10"
+            x:Name="OpenImagesListBtn"
+            Text="OpenListOfFrames"
+            Clicked="OnOpenImagesAsListClicked"
+            HorizontalOptions="Center"/>
 
 
 
-     
 
-    </StackLayout>
+
+
+        </StackLayout>
     </ScrollView>
 </ContentPage>
 

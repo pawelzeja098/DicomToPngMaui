@@ -166,6 +166,11 @@ public partial class MainPage : ContentPage
         Navigation.PushAsync(new ViewImages());
 
     }
+
+    private void OnOpenImagesAsListClicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new ViewImagesAsList());
+    }
         
     
     [Obsolete]
