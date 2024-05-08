@@ -11,9 +11,11 @@ App works on android and windows, it was not tested on apple products.
 - save images from dicom as png
 - get files from urls
 - carousel view of pngs
+- list view of pngs
 
 ## TO DO: 
-- customize application  
+- customize application
+- marking an area on the image
 
 ## Solved problems:
 -Building MAUI Android Failing https://stackoverflow.com/questions/72454213/building-maui-android-failing  
